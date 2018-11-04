@@ -104,11 +104,10 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
         beforeEach(function(done) {
-            loadFeed(0);
-            Array.from(feed.children).forEach(function(entry) {
-                firstFeed.push(entry.innerText);
+            loadFeed(0, function() {
+                firstfeed = $('.feed').html();
+                loadFeed(1, done);
             });
-            loadFeed(1, done);
         });
 
         it('contains changes', function() {
